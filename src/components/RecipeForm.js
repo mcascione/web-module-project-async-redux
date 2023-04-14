@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { getRecipe } from "../actions";
+import { useDispatch, connect} from "react-redux";
 
 const RecipeForm = () => {
   const [selectedFilter, setSelectedFilter] = useState("");
   const [ingredient, setIngredient] = useState("");
+  const dispatch = useDispatch();
 
   const handleSelect = (e) => {
     const value = e.target.value;
@@ -19,6 +21,7 @@ const RecipeForm = () => {
     e.preventDefault();
     console.log("Selected Filter", selectedFilter);
     console.log("Ingredient", ingredient);
+    dispatch(getRecipe(selectedFilter, ingredient));
   };
 
   return (
@@ -49,4 +52,4 @@ const RecipeForm = () => {
   );
 };
 
-export default RecipeForm;
+export default connect((state) => state)(RecipeForm);

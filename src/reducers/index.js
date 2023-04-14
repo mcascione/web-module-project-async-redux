@@ -1,12 +1,13 @@
+import data from "../data/recipes.js";
 import {
-  // FETCH_RECIPE,
   FETCH_RECIPE_START,
   FETCH_RECIPE_SUCCESS,
   FETCH_RECIPE_ERROR,
 } from "../actions/index.js";
 
+
 const initialState = {
-  recipe: [],
+  recipes: [],
   loading: false,
   error: null,
 };
@@ -20,11 +21,13 @@ function reducer(state = initialState, action) {
         error: "",
       };
     case FETCH_RECIPE_SUCCESS:
-      return {
+      console.log( "payload", action.payload)  
+    return {
         ...state,
         loading: false,
         error: "",
-        recipe: action.payload,
+        recipes: action.payload,
+        
       };
     case FETCH_RECIPE_ERROR:
       return {

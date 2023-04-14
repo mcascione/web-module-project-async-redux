@@ -1,14 +1,14 @@
 import React from "react";
 import "./App.css";
 import RecipeForm from "./components/RecipeForm";
-import data from "./data/recipes";
+// import data from "./data/recipes";
 import RecipeList from "./components/RecipeList";
+import { connect, useSelector } from "react-redux";
 
 function App(props) {
-  const recipes = data;
-  const loading = false;
-  const error = "";
-
+  const recipes = useSelector((state) => state.recipes);
+  const loading = useSelector((state) => state.loading);
+  const error = useSelector((state) => state.error);
   return (
     <div className="App">
       <h1>Tasty Recipe App</h1>
@@ -23,4 +23,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default connect((store) => store)(App);

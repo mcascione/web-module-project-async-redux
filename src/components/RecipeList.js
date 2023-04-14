@@ -1,16 +1,18 @@
 import React from "react";
 import Recipe from "./Recipe";
+import { connect } from 'react-redux'
 
 const RecipeList = (props) => {
   const { recipes } = props;
-
+    console.log("recipelistprops", props)
   return (
     <div id="recipeList">
-      {recipes[0]?.map((recipe) => {
+      {recipes?.map((recipe) => {
+        // console.log("what is a recipe", recipe)
         return <Recipe recipe={recipe} key={recipe.id} />;
       })}
     </div>
   );
 };
 
-export default RecipeList;
+export default connect((state) => state)(RecipeList);
